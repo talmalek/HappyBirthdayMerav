@@ -1,0 +1,609 @@
+/* ==========================================================================
+   Lacoste Polo Atelier Experience - 3-Layer Architecture Engine
+   ========================================================================== */
+
+:root {
+    --lacoste-sky: #5ecceb;
+    --lacoste-sky-light: #5ecceb;
+    --lacoste-navy: #092c42;
+    --lacoste-blue: #1c6b94;
+    --lacoste-white: #ffffff;
+    --font-body: 'Outfit', -apple-system, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-body);
+    background-color: var(--lacoste-sky);
+    color: var(--lacoste-navy);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Layer Base Architecture */
+.app-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ==========================================================================
+   LAYER 1: Background & Seamless Merav Posing Image (NO BORDERS, SEAMLESS)
+   ========================================================================== */
+.layer-1 {
+    z-index: 1;
+    background: #5ecceb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.merav-blend-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 680px;
+    height: 100%;
+    max-height: 82vh;
+    padding-bottom: 20px;
+}
+
+/* Merav Image: 100% TRANSPARENT PNG, NO FRAME, NO BORDER */
+.merav-blend-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 15px 30px rgba(9, 44, 66, 0.15));
+    animation: gentleFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes gentleFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+/* ==========================================================================
+   LAYER 2: Lacoste Button Frame & Navigation Controls
+   ========================================================================== */
+.layer-2 {
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.lacoste-header, .lacoste-push-dock {
+    pointer-events: auto;
+}
+
+/* Header Bar */
+.lacoste-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 24px 32px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+/* Bigger Seal Stamp in Top-Left */
+.lacoste-round-seal.seal-top-left {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rotateSeal 22s linear infinite;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lacoste-round-seal.seal-top-left:hover {
+    filter: drop-shadow(0 4px 12px rgba(255, 42, 117, 0.4));
+}
+
+.lacoste-round-seal.seal-top-left:active {
+    transform: scale(0.92);
+}
+
+@keyframes rotateSeal {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.seal-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.seal-text {
+    font-size: 9.8px;
+    font-weight: 800;
+    fill: var(--lacoste-navy);
+    letter-spacing: 2px;
+}
+
+.seal-center-icon {
+    position: absolute;
+    font-size: 2.2rem;
+    animation: pulseHeart 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulseHeart {
+    0% { transform: scale(0.9); }
+    100% { transform: scale(1.2); }
+}
+
+.sound-round-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    color: var(--lacoste-navy);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.sound-round-btn:hover {
+    background: #ffffff;
+    transform: scale(1.08);
+}
+
+/* Exact Lacoste 3D Arcade Push Button Layer (Bottom Dock) */
+.lacoste-push-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* White Curved Wave Notch */
+.dock-white-curve {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.curve-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Interactive Push Assembly */
+.dock-push-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+/* Floating "Push" Pill Tooltip */
+.push-floating-pill {
+    background: #ffffff;
+    padding: 6px 22px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(9, 44, 66, 0.12);
+    margin-bottom: 8px;
+    animation: floatPushPill 1.8s ease-in-out infinite alternate;
+}
+
+.push-floating-pill span {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--lacoste-blue);
+    letter-spacing: 0.5px;
+}
+
+@keyframes floatPushPill {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+
+/* Exact 3D Arcade Push Button & Bezel */
+.lacoste-3d-button {
+    position: relative;
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bezel-outer-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(180deg, #e3f7fc 0%, #76c5db 100%);
+    box-shadow: 0 14px 28px rgba(9, 44, 66, 0.25),
+                0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bezel-inner-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(180deg, #2b617a 0%, #0d384f 100%);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.button-dome {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #b2f5ff 0%, #1ab2d6 50%, #086b85 100%);
+    box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.35),
+                inset 0 6px 12px rgba(255, 255, 255, 0.85),
+                0 6px 16px rgba(26, 178, 214, 0.6);
+    overflow: hidden;
+    transition: transform 0.1s ease;
+}
+
+.dome-radial-glow {
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, transparent 65%);
+    animation: domeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes domeGlow {
+    0% { opacity: 0.5; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1.15); }
+}
+
+.dome-top-highlight {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    width: 26px;
+    height: 13px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    transform: rotate(-30deg);
+}
+
+.lacoste-3d-button:hover {
+    transform: scale(1.05) translateY(-2px);
+}
+
+.lacoste-3d-button:active {
+    transform: scale(0.94) translateY(6px);
+}
+
+/* ==========================================================================
+   LAYER 3: Pop-up Wish Message Card & Confetti Animation
+   ========================================================================== */
+.layer-3 {
+    z-index: 3;
+    pointer-events: auto;
+}
+
+.layer-3.hidden {
+    display: none !important;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 44, 66, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.wish-card-modal {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    background: #ffffff;
+    border-radius: 32px;
+    padding: 32px 28px;
+    box-shadow: 0 25px 60px rgba(9, 44, 66, 0.3);
+    text-align: center;
+}
+
+.modal-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    background: rgba(28, 107, 148, 0.1);
+    color: var(--lacoste-blue);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.modal-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--lacoste-navy);
+}
+
+.wish-body {
+    position: relative;
+    margin: 20px 0;
+    padding: 24px 20px;
+    background: #f2f9fc;
+    border-radius: 20px;
+}
+
+.quote-mark {
+    font-size: 3rem;
+    color: var(--lacoste-blue);
+    opacity: 0.3;
+    position: absolute;
+    top: 24px;
+    left: 14px;
+}
+
+.quote-mark.end {
+    top: auto;
+    bottom: -10px;
+    right: 14px;
+}
+
+.wish-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--lacoste-navy);
+    font-weight: 500;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-footer-clean {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.dismiss-hint {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #668395;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .lacoste-round-seal.seal-top-left {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .merav-blend-wrapper {
+        max-height: 70vh;
+    }
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ==========================================================================
+   LOGIN GATE OVERLAY & VIP ACCESS CONTROL STYLES
+   ========================================================================== */
+.login-gate-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(9, 44, 66, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 1;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.login-gate-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.login-card-modal {
+    background: #ffffff;
+    border-radius: 32px;
+    width: 100%;
+    max-width: 440px;
+    padding: 36px 32px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(94, 204, 235, 0.15);
+    color: var(--lacoste-blue);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+}
+
+.login-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--lacoste-navy);
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    font-size: 0.95rem;
+    color: #557285;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#passcode-input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 16px;
+    border: 2px solid #e1eef4;
+    font-size: 1.05rem;
+    text-align: center;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: 2px;
+    outline: none;
+    transition: all 0.2s ease;
+    background: #f9fbfd;
+}
+
+#passcode-input:focus {
+    border-color: var(--lacoste-sky);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(94, 204, 235, 0.2);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1c6b94 0%, #092c42 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 20px rgba(9, 44, 66, 0.25);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(9, 44, 66, 0.35);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.login-error-msg {
+    color: #e63946;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.login-error-msg.hidden {
+    display: none;
+}
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.login-divider::before, .login-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e1eef4;
+}
+
+.login-divider span {
+    padding: 0 12px;
+    color: #8aa4b5;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.guest-login-btn {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 16px;
+    background: #eef7fc;
+    color: var(--lacoste-blue);
+    font-weight: 800;
+    font-size: 0.95rem;
+    border: 1px dashed rgba(28, 107, 148, 0.4);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.guest-login-btn:hover {
+    background: #e1f1fa;
+    border-color: var(--lacoste-blue);
+}
+
+.login-footer-hint {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: #7b97a8;
+}

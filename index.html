@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Merav! 🎈✨</title>
+    <meta name="description" content="A 3-layer interactive birthday experience dedicated to Merav!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="lacoste-3layer-app">
+
+    <!-- LAYER 1: Background & Merav Posing Image (100% TRANSPARENT PNG) -->
+    <div id="layer-1-background" class="app-layer layer-1">
+        <div class="merav-blend-wrapper">
+            <img src="assets/merav_nobg.png" alt="Merav Posing" id="merav-blend-img">
+        </div>
+    </div>
+
+    <!-- LAYER 2: Lacoste Button Frame & Top/Bottom Navigation Controls -->
+    <div id="layer-2-controls" class="app-layer layer-2">
+        
+        <!-- Top Header Navigation -->
+        <header class="lacoste-header">
+            <div class="header-left">
+                <!-- Circular Rotating Seal Stamp in Top Left (Easter Egg Trigger) -->
+                <div class="lacoste-round-seal seal-top-left" id="seal-top-left" title="Click me for a secret surprise! 💋">
+                    <svg viewBox="0 0 100 100" class="seal-svg">
+                        <path id="seal-circle-path" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"/>
+                        <text class="seal-text">
+                            <textPath href="#seal-circle-path" startOffset="50%" text-anchor="middle">
+                                HAPPY BIRTHDAY MERAV • 13.09.1981 •
+                            </textPath>
+                        </text>
+                    </svg>
+                    <div class="seal-center-icon" id="heart-seal-icon">💖</div>
+                </div>
+            </div>
+            
+            <div class="header-center"></div>
+
+            <div class="header-right">
+                <button id="lock-app-btn" class="sound-round-btn" title="Lock Experience (Return to Login)">
+                    <span class="lock-icon">🔒</span>
+                </button>
+                <button id="sfx-toggle-btn" class="sound-round-btn active" title="Toggle Sound">
+                    <span class="sound-icon">🔊</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Bottom Curved Notch & 3D Push Button Dock -->
+        <footer class="lacoste-push-dock">
+            <div class="dock-white-curve">
+                <svg class="curve-svg" viewBox="0 0 1440 180" preserveAspectRatio="none">
+                    <path d="M0,180 L0,110 C480,110 580,20 720,20 C860,20 960,110 1440,110 L1440,180 Z" fill="#ffffff"/>
+                </svg>
+            </div>
+
+            <div class="dock-push-container">
+                <div class="push-floating-pill">
+                    <span>Push</span>
+                </div>
+                
+                <button id="pop-wish-main-btn" class="lacoste-3d-button" aria-label="Push Button">
+                    <div class="bezel-outer-ring">
+                        <div class="bezel-inner-ring">
+                            <div class="button-dome">
+                                <div class="dome-radial-glow"></div>
+                                <div class="dome-top-highlight"></div>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- LAYER 3: Pop-up Wish Message Card & Confetti Animation -->
+    <div id="layer-3-popup" class="app-layer layer-3 hidden">
+        <div id="wish-modal-overlay" class="modal-overlay">
+            <div class="wish-card-modal">
+                <div class="modal-header-decor">
+                    <span class="modal-tag" id="wish-category-tag">Romantic Wish</span>
+                    <h2 class="modal-title">Happy Birthday, Merav!</h2>
+                </div>
+
+                <div class="wish-body">
+                    <div class="quote-mark">“</div>
+                    <p id="wish-text-content" class="wish-text">
+                        Loading special birthday wish...
+                    </p>
+                    <div class="quote-mark end">”</div>
+                </div>
+
+                <div class="modal-footer-clean">
+                    <span class="dismiss-hint">✨ Tap anywhere outside to close ✨</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE OVERLAY: Passcode & VIP Access Control -->
+    <div id="login-gate-overlay" class="login-gate-overlay">
+        <div class="login-card-modal">
+            <div class="login-badge">VIP ACCESS • 13.09.1981</div>
+            <h1 class="login-title">Happy Birthday Merav! 🎈</h1>
+            <p class="login-subtitle">Welcome to Merav's Exclusive Lacoste Atelier Birthday Experience.</p>
+            
+            <form id="login-form" class="login-form">
+                <div class="input-group">
+                    <input type="password" id="passcode-input" placeholder="Enter PIN (Hint: 1309)" autocomplete="off" required>
+                    <button type="submit" id="login-submit-btn" class="login-btn">
+                        <span>Unlock Experience</span> ✨
+                    </button>
+                </div>
+                <div id="login-error-msg" class="login-error-msg hidden">Incorrect passcode! Hint: Enter 1309 or tap Guest Access below.</div>
+            </form>
+
+            <div class="login-divider"><span>OR</span></div>
+
+            <button type="button" id="guest-quick-login-btn" class="guest-login-btn">
+                <span>💖 Enter as Guest / Family VIP</span>
+            </button>
+            
+            <div class="login-footer-hint">Passcode Key: <strong>1309</strong> (Birthday Sept 13th)</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
