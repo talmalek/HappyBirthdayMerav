@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // BILINGUAL TRANSLATION DICTIONARY (HEBREW IS DEFAULT)
     const DICTIONARY = {
         he: {
-            sealText: "מזל טוב מירב • 13.09.1981 •",
+            sealText: "מזל טוב מירב • 13.09.1981 • מזל טוב מירב • 13.09.1981 •",
+            sealTextLength: "228",
             pushPill: "לחצי",
             loginBadge: "כניסת VIP • 13.09.1981",
             loginTitle: "מזל טוב מירב! 🎈",
@@ -70,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
             langLabel: "HE"
         },
         en: {
-            sealText: "HAPPY BIRTHDAY MERAV • 13.09.1981 •",
+            sealText: "HAPPY BIRTHDAY MERAV • 13.09.1981 • HAPPY BIRTHDAY MERAV •",
+            sealTextLength: "228",
             pushPill: "Push",
             loginBadge: "VIP ACCESS • 13.09.1981",
             loginTitle: "Happy Birthday Merav! 🎈",
@@ -106,7 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update Seal Stamp Text
         const sealTextPath = document.querySelector('.seal-text textPath');
-        if (sealTextPath) sealTextPath.textContent = dict.sealText;
+        if (sealTextPath) {
+            sealTextPath.textContent = dict.sealText;
+            sealTextPath.setAttribute('textLength', dict.sealTextLength || '228');
+            sealTextPath.setAttribute('lengthAdjust', 'spacing');
+        }
 
         // Update Push Floating Pill Badge
         const pushPill = document.querySelector('.push-floating-pill span');

@@ -44,30 +44,37 @@ html, body {
     z-index: 1;
     background: #5ecceb;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
+    overflow: hidden;
 }
 
 .merav-blend-wrapper {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     width: 100%;
     max-width: 680px;
     height: 100%;
-    max-height: 82vh;
-    padding-bottom: 20px;
+    max-height: 100vh;
+    padding-bottom: 0;
+    transform: scale(1.1);
+    transform-origin: bottom center;
 }
 
-/* Merav Image: 100% TRANSPARENT PNG, NO FRAME, NO BORDER */
+/* Merav Image: 100% TRANSPARENT PNG, NO FRAME, NO BORDER, ANCHORED TO BOTTOM DOCK */
 .merav-blend-wrapper img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     height: 100%;
+    max-height: 88vh;
     object-fit: contain;
+    object-position: bottom center;
     display: block;
     filter: drop-shadow(0 15px 30px rgba(9, 44, 66, 0.15));
     animation: gentleFloat 4s ease-in-out infinite alternate;
+    margin-bottom: -5px; /* Ensures zero gap behind bottom curve dock */
 }
 
 @keyframes gentleFloat {
@@ -144,10 +151,10 @@ html, body {
 }
 
 .seal-text {
-    font-size: 9.8px;
+    font-size: 7.2px;
     font-weight: 800;
     fill: var(--lacoste-navy);
-    letter-spacing: 2px;
+    letter-spacing: normal;
 }
 
 .seal-center-icon {
@@ -458,7 +465,21 @@ html, body {
     }
     
     .merav-blend-wrapper {
-        max-height: 70vh;
+        max-height: 100vh;
+        width: 100%;
+        max-width: 100vw;
+        transform: scale(1.1);
+        transform-origin: bottom center;
+    }
+
+    .merav-blend-wrapper img {
+        height: 85vh;
+        max-height: 85vh;
+        width: auto;
+        max-width: 110vw;
+        object-fit: contain;
+        object-position: bottom center;
+        margin-bottom: -10px;
     }
 }
 
