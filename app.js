@@ -42,6 +42,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const VALID_PASSCODES = ['1309', '13091981', '130981', '1981', 'merav', 'love'];
 
+    // COUNTDOWN CLOCK TO SEPTEMBER 13, 2026
+    const cdDays = document.getElementById('cd-days');
+    const cdHours = document.getElementById('cd-hours');
+    const cdMins = document.getElementById('cd-mins');
+    const cdSecs = document.getElementById('cd-secs');
+
+    // Target: September 13th, 2026 (00:00:00)
+    const TARGET_BIRTHDAY = new Date('2026-09-13T00:00:00+03:00').getTime();
+
+    function updateCountdownTimer() {
+        const now = new Date().getTime();
+        const difference = TARGET_BIRTHDAY - now;
+
+        if (difference > 0) {
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((difference % (1000 * 60)) / 1000);
+
+            if (cdDays) cdDays.textContent = String(days).padStart(2, '0');
+            if (cdHours) cdHours.textContent = String(hours).padStart(2, '0');
+            if (cdMins) cdMins.textContent = String(mins).padStart(2, '0');
+            if (cdSecs) cdSecs.textContent = String(secs).padStart(2, '0');
+        } else {
+            if (cdDays) cdDays.textContent = '00';
+            if (cdHours) cdHours.textContent = '00';
+            if (cdMins) cdMins.textContent = '00';
+            if (cdSecs) cdSecs.textContent = '00';
+            const label = document.querySelector('.countdown-label');
+            if (label) label.textContent = "HAPPY BIRTHDAY MERAV! 🎉";
+        }
+    }
+
+    updateCountdownTimer();
+    setInterval(updateCountdownTimer, 1000);
+
     function checkAuthStatus() {
         const isAuth = localStorage.getItem('merav_birthday_auth');
         if (isAuth === 'true') {

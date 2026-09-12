@@ -111,24 +111,49 @@
         </div>
     </div>
 
-    <!-- LOGIN GATE OVERLAY: Passcode Access Control -->
+    <!-- LOGIN GATE OVERLAY: Passcode Access Control & Countdown Clock -->
     <div id="login-gate-overlay" class="login-gate-overlay">
         <div class="login-card-modal">
             <div class="login-badge">VIP ACCESS • 13.09.1981</div>
             <h1 class="login-title">Happy Birthday Merav! 🎈</h1>
-            <p class="login-subtitle">Welcome to Merav's Special Birthday Experience.</p>
+            
+            <!-- Live Countdown Clock to September 13, 2026 -->
+            <div class="countdown-container">
+                <div class="countdown-label">COUNTDOWN TO SEPTEMBER 13, 2026</div>
+                <div class="countdown-timer" id="countdown-timer">
+                    <div class="timer-unit">
+                        <span id="cd-days" class="timer-val">00</span>
+                        <span class="timer-lbl">DAYS</span>
+                    </div>
+                    <span class="timer-sep">:</span>
+                    <div class="timer-unit">
+                        <span id="cd-hours" class="timer-val">00</span>
+                        <span class="timer-lbl">HOURS</span>
+                    </div>
+                    <span class="timer-sep">:</span>
+                    <div class="timer-unit">
+                        <span id="cd-mins" class="timer-val">00</span>
+                        <span class="timer-lbl">MINS</span>
+                    </div>
+                    <span class="timer-sep">:</span>
+                    <div class="timer-unit">
+                        <span id="cd-secs" class="timer-val">00</span>
+                        <span class="timer-lbl">SECS</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="login-subtitle">Only those with the secret passcode can unlock before time arrives!</p>
             
             <form id="login-form" class="login-form">
                 <div class="input-group">
-                    <input type="password" id="passcode-input" placeholder="Enter PIN (Hint: 1309)" autocomplete="off" required>
+                    <input type="password" id="passcode-input" placeholder="Enter Passcode" autocomplete="off" required>
                     <button type="submit" id="login-submit-btn" class="login-btn">
                         <span>Unlock Experience</span> ✨
                     </button>
                 </div>
-                <div id="login-error-msg" class="login-error-msg hidden">Incorrect passcode! (Hint: 1309)</div>
+                <div id="login-error-msg" class="login-error-msg hidden">Incorrect passcode! Please try again.</div>
             </form>
-            
-            <div class="login-footer-hint">Passcode Key: <strong>1309</strong> (Birthday Sept 13th)</div>
         </div>
     </div>
 

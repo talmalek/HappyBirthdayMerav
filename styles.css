@@ -491,10 +491,69 @@ html, body {
 }
 
 .login-subtitle {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     color: #557285;
     line-height: 1.5;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+}
+
+/* Countdown Timer Styling */
+.countdown-container {
+    margin: 18px 0;
+    padding: 16px 12px;
+    background: linear-gradient(135deg, #f0f7fb 0%, #e1f0f8 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(94, 204, 235, 0.35);
+}
+
+.countdown-label {
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: var(--lacoste-blue);
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.countdown-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.timer-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 52px;
+    background: #ffffff;
+    padding: 8px 4px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(9, 44, 66, 0.06);
+    border: 1px solid #e1eef4;
+}
+
+.timer-val {
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: var(--lacoste-navy);
+    line-height: 1;
+    font-family: var(--font-body);
+}
+
+.timer-lbl {
+    font-size: 0.62rem;
+    font-weight: 800;
+    color: #7b97a8;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+.timer-sep {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--lacoste-blue);
+    margin-bottom: 12px;
 }
 
 .login-form {
