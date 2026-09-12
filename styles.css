@@ -96,14 +96,18 @@ html, body {
     align-items: flex-start;
     justify-content: space-between;
     padding: 24px 32px;
+    position: relative;
+    z-index: 1005;
+    pointer-events: auto;
 }
 
 .header-left {
     display: flex;
     align-items: center;
+    pointer-events: auto;
 }
 
-/* Bigger Seal Stamp in Top-Left */
+/* Bigger Seal Stamp in Top-Left (Easter Egg) */
 .lacoste-round-seal.seal-top-left {
     position: relative;
     width: 120px;
@@ -113,7 +117,12 @@ html, body {
     justify-content: center;
     animation: rotateSeal 22s linear infinite;
     cursor: pointer;
+    pointer-events: auto !important;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.seal-svg, .seal-center-icon {
+    pointer-events: none !important;
 }
 
 .lacoste-round-seal.seal-top-left:hover {
@@ -165,6 +174,7 @@ html, body {
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    pointer-events: auto !important;
 }
 
 .sound-round-btn.lang-btn {
@@ -175,6 +185,7 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.9);
     letter-spacing: 0.5px;
     box-shadow: 0 4px 10px rgba(9, 44, 66, 0.08);
+    pointer-events: auto !important;
 }
 
 .sound-round-btn:hover {
@@ -205,6 +216,8 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    z-index: 10;
+    pointer-events: auto !important;
 }
 
 /* White Curved Wave Notch */
@@ -215,13 +228,14 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    pointer-events: none;
+    pointer-events: none !important;
 }
 
 .curve-svg {
     width: 100%;
     height: 100%;
     display: block;
+    pointer-events: none !important;
 }
 
 /* Interactive Push Assembly */
@@ -232,6 +246,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     margin-bottom: 12px;
+    pointer-events: auto !important;
 }
 
 /* Floating "Push" Pill Tooltip */
