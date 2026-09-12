@@ -4,8 +4,29 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Birthday Wishes Collection (Dedicated to Merav)
-    const MERAV_WISHES = [
+    // Birthday Wishes Collection - Hebrew & English (Dedicated to Merav)
+    const HE_WISHES = [
+        { category: "אהבה רומנטית", text: "מזל טוב לאשתי המדהימה מרב! כל יום איתך הוא מתנה, ואני כל כך מאושר לצעוד לצידך בחיים. אוהב אותך עד השמיים! ❤️" },
+        { category: "יופי וחן", text: "החיוך שלך מאיר כל חדר והחום שלך נוגע בכל מי שמסביבך. את נהיית יפה ומרהיבה יותר עם כל שנה שעוברת! ✨" },
+        { category: "חגיגה ושמחה", text: "לאישה הכי מדהימה שנולדה ב-13 בספטמבר 1981 – שהיום הולדת שלך יהיה שמח, נוצץ ומלא באהבה בדיוק כמוך! 🎂🎈" },
+        { category: "הערכה והודיה", text: "תודה שאת מביאה כל כך הרבה צחוק, רוך ואור לבית שלנו. מאחל לך אושר אינסופי היום ותמיד! 💖" },
+        { category: "שמחה טהורה", text: "מאחל לך שהשנה הזו תביא איתה את כל האהבה שאת מעניקה לאחרים, מוגברת פי אלף, וכל חלומותייך יתגשמו! 🌟" },
+        { category: "מחמאה מהלב", text: "מרב, האלגנטיות שלך, הטוב שבלבך והעיניים המהפנטות שלך גורמים לי להתאהב בך מחדש כל יום! 🥰" },
+        { category: "תמיד ולנצח", text: "לחגוג את העבר שלך, לנצור את ההווה שלנו ולבנות עתיד עוד יותר מדהים יחד. מזל טוב אהובתי! 🥂" },
+        { category: "איחול מלא אהבה", text: "היום את המלכה הבלתי מעורערת! תירגעי, תיהני מכל האהבה, תאכלי עוד עוגה ותני לנו לפנק אותך עד הסוף! 👑🍰" },
+        { category: "נשמת תאומה", text: "החיים איתך הם הרפתקה מתמשכת מלאה במתיקות. מזל טוב לאהבת חיי, מרב! 🌹" },
+        { category: "זהר וקרינה", text: "תמשיכי להפיץ את האור הנפלא שלך על העולם! האנרגיה שלך מדבקת והלב שלך הוא זהב טהור. ✨" },
+        { category: "חמימות ובית", text: "איתך, כל מקום מרגיש כמו בית. תודה על האהבה האינסופית שלך ועל היותך המרכז של עולמנו. 🏠❤️" },
+        { category: "פתיחת שמפניה", text: "תפתחו את השמפניה ותזרקו את הקונפטי! היום אנחנו חוגגים את היום הנפלא שבו הגעת לעולם. לחיים יפהפייה! 🍾🎉" },
+        { category: "אהבה רומנטית", text: "לא משנה כמה נרות יש על העוגה, האש של האהבה שלי אלייך בוקעת חזק יותר מאי פעם. מזל טוב מרב! 🔥❤️" },
+        { category: "תודה מכל הלב", text: "אני מודה למזל שלי כל יום מחדש שהביא אותך לחיי. שתהיה לך שנה מבורכת בריאות, אושר ושפע! 🙏" },
+        { category: "חלומות לעתיד", text: "שתביא איתה השנה החדשה חוויות מרגשות, זיכרונות נפלאים וכל השלווה והשמחה שלבך מייחל להם! ✈️🌈" },
+        { category: "מחמאה מתוקה", text: "אומרים שגיל הוא רק מספר, אבל עלייך הוא נראה כמו קסם טהור! מזל טוב לאישה הכי שמורה ויפה שאני מכיר! 🌸" },
+        { category: "אושר וצחוק", text: "הצחוק שלך הוא השיר האהוב עליי בעולם. שהיום הולדת שלך יהיה מלא בסיבות לחייך ללא הפסקה! 😄🎶" },
+        { category: "אהבת אמת", text: "מזל טוב לחברה הכי טובה שלי, לנשמה התאומה שלי ולאשתי היפהפייה. הנה להפיכת היום הזה לבלתי נשכח! 💑" }
+    ];
+
+    const EN_WISHES = [
         { category: "Romantic Love", text: "Happy Birthday to my gorgeous wife, Merav! Every single day with you is a gift, and I am so grateful to share my life with you. ❤️" },
         { category: "Beauty & Grace", text: "Your smile brightens up every room and your warmth touches everyone around you. You get more beautiful with every passing year! ✨" },
         { category: "Celebration", text: "To the most incredible woman born on September 13th, 1981 — may your birthday be as extra, bright, and joyous as you are! 🎂🎈" },
@@ -28,6 +49,107 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let lastWishIndex = -1;
 
+    // BILINGUAL TRANSLATION DICTIONARY (HEBREW IS DEFAULT)
+    const DICTIONARY = {
+        he: {
+            sealText: "מזל טוב מרב • 13.09.1981 •",
+            pushPill: "לחצי",
+            loginBadge: "כניסת VIP • 13.09.1981",
+            loginTitle: "מזל טוב מרב! 🎈",
+            countdownLabel: "ספירה לאחור ל-13 בספטמבר 2026",
+            lblHours: "שעות",
+            lblMins: "דקות",
+            lblSecs: "שניות",
+            loginSubtitle: "רק מי שיודע את הסיסמה הסודית יוכל להיכנס לפני שתגיע השעה!",
+            passcodePlaceholder: "הכניסי סיסמה",
+            unlockBtn: "שחררי את החוויה ✨",
+            loginError: "סיסמה שגויה! אנא נסי שוב.",
+            wishModalTitle: "מזל טוב, מרב!",
+            dismissHint: "✨ לחצי מחוץ לכרטיס כדי לסגור ✨",
+            birthdayArrived: "מזל טוב מרב! 🎉",
+            langLabel: "HE"
+        },
+        en: {
+            sealText: "HAPPY BIRTHDAY MERAV • 13.09.1981 •",
+            pushPill: "Push",
+            loginBadge: "VIP ACCESS • 13.09.1981",
+            loginTitle: "Happy Birthday Merav! 🎈",
+            countdownLabel: "COUNTDOWN TO SEPTEMBER 13, 2026",
+            lblHours: "HOURS",
+            lblMins: "MINUTES",
+            lblSecs: "SECONDS",
+            loginSubtitle: "Only those with the secret passcode can unlock before time arrives!",
+            passcodePlaceholder: "Enter Passcode",
+            unlockBtn: "Unlock Experience ✨",
+            loginError: "Incorrect passcode! Please try again.",
+            wishModalTitle: "Happy Birthday, Merav!",
+            dismissHint: "✨ Tap anywhere outside to close ✨",
+            birthdayArrived: "HAPPY BIRTHDAY MERAV! 🎉",
+            langLabel: "EN"
+        }
+    };
+
+    let currentLang = localStorage.getItem('merav_lang') || 'he';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('merav_lang', lang);
+        
+        document.documentElement.dir = (lang === 'he') ? 'rtl' : 'ltr';
+        document.documentElement.lang = lang;
+
+        const dict = DICTIONARY[lang] || DICTIONARY['he'];
+
+        // Update Language Toggle Button Label
+        const langTextLabel = document.getElementById('lang-text-label');
+        if (langTextLabel) langTextLabel.textContent = dict.langLabel;
+
+        // Update Seal Stamp Text
+        const sealTextPath = document.querySelector('.seal-text textPath');
+        if (sealTextPath) sealTextPath.textContent = dict.sealText;
+
+        // Update Push Floating Pill Badge
+        const pushPill = document.querySelector('.push-floating-pill span');
+        if (pushPill) pushPill.textContent = dict.pushPill;
+
+        // Update Login Modal Elements
+        const loginBadge = document.querySelector('.login-badge');
+        if (loginBadge) loginBadge.textContent = dict.loginBadge;
+
+        const loginTitle = document.querySelector('.login-title');
+        if (loginTitle) loginTitle.textContent = dict.loginTitle;
+
+        const countdownLabel = document.querySelector('.countdown-label');
+        if (countdownLabel && countdownLabel.textContent !== DICTIONARY['he'].birthdayArrived && countdownLabel.textContent !== DICTIONARY['en'].birthdayArrived) {
+            countdownLabel.textContent = dict.countdownLabel;
+        }
+
+        const timerLbls = document.querySelectorAll('.timer-lbl');
+        if (timerLbls.length >= 3) {
+            timerLbls[0].textContent = dict.lblHours;
+            timerLbls[1].textContent = dict.lblMins;
+            timerLbls[2].textContent = dict.lblSecs;
+        }
+
+        const loginSubtitle = document.querySelector('.login-subtitle');
+        if (loginSubtitle) loginSubtitle.textContent = dict.loginSubtitle;
+
+        const passcodeInput = document.getElementById('passcode-input');
+        if (passcodeInput) passcodeInput.placeholder = dict.passcodePlaceholder;
+
+        const loginSubmitBtn = document.querySelector('#login-submit-btn span');
+        if (loginSubmitBtn) loginSubmitBtn.textContent = dict.unlockBtn;
+
+        const loginErrorMsg = document.getElementById('login-error-msg');
+        if (loginErrorMsg) loginErrorMsg.textContent = dict.loginError;
+
+        const modalTitle = document.querySelector('.modal-title');
+        if (modalTitle) modalTitle.textContent = dict.wishModalTitle;
+
+        const dismissHint = document.querySelector('.dismiss-hint');
+        if (dismissHint) dismissHint.textContent = dict.dismissHint;
+    }
+
     // Web Audio Synthesizer
     let audioCtx = null;
     let isSfxMuted = false;
@@ -37,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const passcodeInput = document.getElementById('passcode-input');
     const loginErrorMsg = document.getElementById('login-error-msg');
-    const guestLoginBtn = document.getElementById('guest-quick-login-btn');
     const lockAppBtn = document.getElementById('lock-app-btn');
+    const langToggleBtn = document.getElementById('lang-toggle-btn');
 
     const VALID_PASSCODES = ['1309', '13091981', '130981', '1981', 'merav', 'love'];
 
@@ -135,6 +257,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const nextLang = (currentLang === 'he') ? 'en' : 'he';
+            setLanguage(nextLang);
+            playPopSound();
+        });
+    }
+
+    setLanguage(currentLang);
     checkAuthStatus();
 
     function initAudioContext() {
@@ -193,13 +325,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const wishTextContent = document.getElementById('wish-text-content');
 
     function getRandomWish() {
+        const wishes = (currentLang === 'he') ? HE_WISHES : EN_WISHES;
         let randomIndex;
         do {
-            randomIndex = Math.floor(Math.random() * MERAV_WISHES.length);
-        } while (randomIndex === lastWishIndex && MERAV_WISHES.length > 1);
+            randomIndex = Math.floor(Math.random() * wishes.length);
+        } while (randomIndex === lastWishIndex && wishes.length > 1);
         
         lastWishIndex = randomIndex;
-        return MERAV_WISHES[randomIndex];
+        return wishes[randomIndex];
     }
 
     function showLayer3RandomWish() {

@@ -167,9 +167,31 @@ html, body {
     transition: all 0.2s ease;
 }
 
+.sound-round-btn.lang-btn {
+    font-size: 0.85rem;
+    font-weight: 900;
+    font-family: var(--font-body);
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(9, 44, 66, 0.08);
+}
+
 .sound-round-btn:hover {
     background: #ffffff;
     transform: scale(1.08);
+}
+
+/* RTL Layout Enhancements for Hebrew */
+[dir="rtl"] .login-title,
+[dir="rtl"] .login-subtitle,
+[dir="rtl"] .countdown-label,
+[dir="rtl"] .login-error-msg,
+[dir="rtl"] .modal-title,
+[dir="rtl"] .wish-text,
+[dir="rtl"] .dismiss-hint {
+    text-align: center;
+    font-family: 'Outfit', -apple-system, sans-serif;
 }
 
 /* Exact Lacoste 3D Arcade Push Button Layer (Bottom Dock) */
