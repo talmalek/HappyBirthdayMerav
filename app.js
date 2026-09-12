@@ -367,6 +367,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 180);
     }
 
+    let portraitSwapTimer = null;
+    const meravBlendImg = document.getElementById('merav-blend-img');
+
+    function swapToSurprisedKissesPortrait() {
+        if (!meravBlendImg) return;
+        
+        clearTimeout(portraitSwapTimer);
+
+        // Smooth GSAP transition to surprised kisses portrait
+        if (typeof gsap !== 'undefined') {
+            gsap.to(meravBlendImg, {
+                opacity: 0.2,
+                scale: 0.95,
+                duration: 0.18,
+                ease: 'power2.in',
+                onComplete: () => {
+                    meravBlendImg.src = 'assets/merav_kisses_nobg.png';
+                    gsap.fromTo(meravBlendImg, 
+                        { opacity: 0.2, scale: 1.15, rotate: -2 }, 
+                        { opacity: 1, scale: 1, rotate: 0, duration: 0.45, ease: 'back.out(2)' }
+                    );
+                }
+            });
+        } else {
+            meravBlendImg.src = 'assets/merav_kisses_nobg.png';
+        }
+
+        // Revert back to original transparent portrait after 10 seconds
+        portraitSwapTimer = setTimeout(() => {
+            if (typeof gsap !== 'undefined') {
+                gsap.to(meravBlendImg, {
+                    opacity: 0.2,
+                    scale: 0.96,
+                    duration: 0.25,
+                    ease: 'power2.in',
+                    onComplete: () => {
+                        meravBlendImg.src = 'assets/merav_nobg.png';
+                        gsap.to(meravBlendImg, { opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' });
+                    }
+                });
+            } else {
+                meravBlendImg.src = 'assets/merav_nobg.png';
+            }
+        }, 10000);
+    }
+
     // EASTER EGG: 3 Clicks on Top-Left Seal/Heart Logo
     let sealClickCount = 0;
     let sealClickTimer = null;
@@ -390,8 +436,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sealClickCount === 3) {
                 sealClickCount = 0;
                 playKissSound();
-                // ONLY trigger the full screen kisses confetti across the entire screen (NO modal window)
+                // Trigger full screen kisses confetti explosion
                 triggerFullScreenKissesConfetti();
+                // Swap Merav portrait to lipstick kisses portrait for 10 seconds
+                swapToSurprisedKissesPortrait();
             } else {
                 // Reset counter after 1.8s of inactivity
                 sealClickTimer = setTimeout(() => {
